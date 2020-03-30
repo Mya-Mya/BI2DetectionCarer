@@ -14,6 +14,12 @@ public class DetectionLabelChoosingPresenter {
         this.view=view;
         this.inspection=inspection;
         this.labelList=labelList;
+
+        view.setLabelTextList(labelList);
+    }
+    public void onDetectionLabelChosen(String label){
+        //検出情報ラベルlabelが付随した要検証組を取り出す
+        view.gotoInspectingView();
     }
 
 }
