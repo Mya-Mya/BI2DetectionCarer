@@ -9,7 +9,7 @@ public class MasterView extends JFrame {
     public static MasterView inst;
 
     public MasterView() {
-        super("BI2DetectionCarer");
+        super("BI2DetectionInspector");
         setPreferredSize(new Dimension(1000, 700));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBackground(ColorFactory.back);
