@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IInitialSettingView {
     void setLabelListText(List<String>labelList);
-    void setImageDirText(String dir);
-    void setDetectionDirText(String dir);
+    void setImageDirText(String directoryName,String fullPath);
+    void setDetectionDirText(String directoryName,String fullPath);
     void gotoDetectionLabelChoosingView(Inspection inspection,List<String>labelList);
 }

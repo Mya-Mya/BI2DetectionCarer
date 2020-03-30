@@ -33,35 +33,40 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
         add(cTop, BorderLayout.NORTH);
 
         JPanel center = CompFactory.panel();
-        center.setLayout(new GridLayout(3, 2, 30, 30));
+        center.setBorder(BorderFactory.createEmptyBorder(0, 70, 0, 70));
+        center.setLayout(new GridLayout(3, 2, 40, 70));
 
         //1
         JLabel label = CompFactory.label();
-        label.setText("扱うラベル : ");
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
+        label.setText("扱うラベル");
         center.add(label);
 
         cLabelListLabel = CompFactory.label();
         center.add(cLabelListLabel);
 
-
         //2
         label = CompFactory.label();
-        label.setText("未検証・未訂正の画像が含まれるディレクトリ : ");
+        label.setText("未検証・未訂正の画像が含まれるディレクトリ");
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
         center.add(label);
 
         cImageDirChoosingButton = CompFactory.button();
         cImageDirChoosingButton.setActionCommand("IMAGEDIRCHOOSING");
         cImageDirChoosingButton.addActionListener(this);
+        cImageDirChoosingButton.setHorizontalAlignment(SwingConstants.LEFT);
         center.add(cImageDirChoosingButton);
 
         //3
         label = CompFactory.label();
-        label.setText("検出情報が含まれるディレクトリ : ");
+        label.setText("検出情報が含まれるディレクトリ");
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
         center.add(label);
 
         cDetectionChoosingButton = CompFactory.button();
         cDetectionChoosingButton.setActionCommand("DETECTIONCHOOSING");
         cDetectionChoosingButton.addActionListener(this);
+        cDetectionChoosingButton.setHorizontalAlignment(SwingConstants.LEFT);
         center.add(cDetectionChoosingButton);
 
         add(center, BorderLayout.CENTER);
@@ -78,13 +83,15 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
     }
 
     @Override
-    public void setImageDirText(String dir) {
-        cImageDirChoosingButton.setText(dir);
+    public void setImageDirText(String directoryName, String fullPath) {
+        cImageDirChoosingButton.setText(directoryName);
+        cImageDirChoosingButton.setToolTipText(fullPath);
     }
 
     @Override
-    public void setDetectionDirText(String dir) {
-        cDetectionChoosingButton.setText(dir);
+    public void setDetectionDirText(String directoryName, String fullPath) {
+        cDetectionChoosingButton.setText(directoryName);
+        cDetectionChoosingButton.setToolTipText(fullPath);
     }
 
     @Override
@@ -99,7 +106,9 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
 
     @Override
     public void gotoDetectionLabelChoosingView(Inspection inspection, List<String> labelList) {
-        //MasterView.inst.changeScene();
+        MasterView.inst.changeScene(
+                new DetectionLabelChoosingView(inspection, labelList)
+        );
     }
 
     @Override

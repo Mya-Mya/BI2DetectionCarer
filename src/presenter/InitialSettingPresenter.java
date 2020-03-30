@@ -13,27 +13,30 @@ public class InitialSettingPresenter {
 
     private File imageDir;
     private File detectionDir;
-    private List<String >labelList;
+    private List<String> labelList;
 
-    public InitialSettingPresenter(IInitialSettingView view){
-        this.view=view;
-        labelList= Arrays.asList("Idunno","Notseen","Seen");
+    public InitialSettingPresenter(IInitialSettingView view) {
+        this.view = view;
+        labelList = Arrays.asList("Idunno", "Notseen", "Seen");
         view.setLabelListText(labelList);
-        view.setImageDirText("未設定");
-        view.setDetectionDirText("未設定");
+        view.setImageDirText("未設定", "未設定");
+        view.setDetectionDirText("未設定", "未設定");
     }
-    public void onImageDirChosen(File imageDir){
-        this.imageDir=imageDir;
-        view.setImageDirText(imageDir.getAbsolutePath());
+
+    public void onImageDirChosen(File imageDir) {
+        this.imageDir = imageDir;
+        view.setImageDirText(imageDir.getName(), imageDir.getAbsolutePath());
     }
-    public void onDetectionDirChosen(File detectionDir){
-        this.detectionDir=detectionDir;
-        view.setDetectionDirText(detectionDir.getAbsolutePath());
+
+    public void onDetectionDirChosen(File detectionDir) {
+        this.detectionDir = detectionDir;
+        view.setDetectionDirText(detectionDir.getName(), detectionDir.getAbsolutePath());
     }
-    public void onOKButtonPushed(){
-        Inspection inspection= InspectionFactory.createInspection(
-                detectionDir,imageDir,labelList
+
+    public void onOKButtonPushed() {
+        Inspection inspection = InspectionFactory.createInspection(
+                detectionDir, imageDir, labelList
         );
-        view.gotoDetectionLabelChoosingView(inspection,labelList);
+        view.gotoDetectionLabelChoosingView(inspection, labelList);
     }
 }
