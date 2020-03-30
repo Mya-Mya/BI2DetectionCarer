@@ -1,4 +1,6 @@
 out/*
+*.kotlin_module
+
 .idea/*
 sample/*
 *.iml
