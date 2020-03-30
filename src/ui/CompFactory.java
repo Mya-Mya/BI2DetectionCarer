@@ -20,4 +20,10 @@ public class CompFactory {
         l.setForeground(ColorFactory.white);
         return l;
     }
+
+    public static JPanel panel(){
+        JPanel p=new JPanel();
+        p.setBackground(ColorFactory.back);
+        return p;
+    }
 }
