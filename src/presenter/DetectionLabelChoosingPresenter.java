@@ -15,4 +15,5 @@ public class DetectionLabelChoosingPresenter {
         this.inspection=inspection;
         this.labelList=labelList;
     }
+
 }
