@@ -11,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetectionLabelChoosingView extends JPanel implements IDetectionLabelChoosingView, ActionListener {
@@ -53,8 +52,10 @@ public class DetectionLabelChoosingView extends JPanel implements IDetectionLabe
     }
 
     @Override
-    public void gotoInspectingView() {
-
+    public void gotoInspectingView(Inspection inspection, String targetLabel) {
+        MasterView.inst.changeScene(
+                new InspectingView(inspection,targetLabel)
+        );
     }
 
     @Override
