@@ -11,5 +11,5 @@ import java.util.List;
 public interface IInitialSettingView {
     void setImageDirText(String directoryName,String fullPath);
     void setDetectionDirText(String directoryName,String fullPath);
-    void gotoDetectionLabelChoosingView(Inspection inspection,List<String>labelList);
+    void gotoDetectionLabelChoosingView(Inspection inspection);
 }

@@ -87,9 +87,9 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
 
 
     @Override
-    public void gotoDetectionLabelChoosingView(Inspection inspection, List<String> labelList) {
+    public void gotoDetectionLabelChoosingView(Inspection inspection) {
         MasterView.inst.changeScene(
-                new DetectionLabelChoosingView(inspection, labelList)
+                new DetectionLabelChoosingView(inspection)
         );
     }
 

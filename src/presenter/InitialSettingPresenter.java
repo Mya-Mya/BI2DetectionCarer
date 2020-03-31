@@ -13,7 +13,6 @@ public class InitialSettingPresenter {
 
     private File imageDir;
     private File detectionDir;
-    private List<String> labelList;
 
     public InitialSettingPresenter(IInitialSettingView view) {
         this.view = view;
@@ -32,9 +31,7 @@ public class InitialSettingPresenter {
     }
 
     public void onOKButtonPushed() {
-        Inspection inspection = InspectionFactory.createInspection(
-                detectionDir, imageDir, labelList
-        );
-        view.gotoDetectionLabelChoosingView(inspection, labelList);
+        Inspection inspection = InspectionFactory.createInspection(detectionDir, imageDir);
+        view.gotoDetectionLabelChoosingView(inspection);
     }
 }

@@ -8,15 +8,17 @@ import java.util.*;
 public class Inspection {
     private List<ImageInfo> imageInfoList;
     private List<DetectionInfo> detectionInfoList;
+    private Set<String> detectionLabelSet;
     private List<InspectablePair> inspectableList;
 
     /**
      * @param detectionInfoList 今ある検出情報
      * @param imageInfoList     今ある未検証・未訂正の画像
      */
-    public Inspection(List<DetectionInfo> detectionInfoList, List<ImageInfo> imageInfoList) {
+    public Inspection(List<DetectionInfo> detectionInfoList, List<ImageInfo> imageInfoList, Set<String> detectionLabelSet) {
         this.detectionInfoList = detectionInfoList;
         this.imageInfoList = imageInfoList;
+        this.detectionLabelSet = detectionLabelSet;
         inspectableList = new ArrayList<>();
 
         for (DetectionInfo detectionInfo : detectionInfoList) {
@@ -61,6 +63,14 @@ public class Inspection {
             }
         }
         return list;
+    }
+
+    /**
+     * 検出情報のラベルの集合を返す。
+     * @return 検出情報のラベルの集合
+     */
+    public Set<String> getDetectionLabelSet() {
+        return detectionLabelSet;
     }
 
 }

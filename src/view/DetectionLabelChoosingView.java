@@ -20,7 +20,7 @@ public class DetectionLabelChoosingView extends JPanel implements IDetectionLabe
     private List<String> labelList;
     private JPanel buttonPanel;
 
-    public DetectionLabelChoosingView(Inspection inspection, List<String> labelList) {
+    public DetectionLabelChoosingView(Inspection inspection) {
         super();
         this.inspection = inspection;
         this.labelList = labelList;
