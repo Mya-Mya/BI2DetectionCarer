@@ -34,8 +34,6 @@ public class InspectingView extends JPanel implements IInspectingView, KeyListen
         super();
         setBackground(ColorFactory.back);
         setLayout(new BorderLayout());
-        setFocusable(true);
-        addKeyListener(this);
 
         cTargetLabelNameLabel = CompFactory.label();
         cTargetLabelNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -43,10 +41,12 @@ public class InspectingView extends JPanel implements IInspectingView, KeyListen
         //add(cTargetLabelNameLabel, BorderLayout.NORTH);
 
         cLabelKeybindMessageLabel = CompFactory.label();
+        cLabelKeybindMessageLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        cLabelKeybindMessageLabel.setFont(FontFactory.large);
         add(cLabelKeybindMessageLabel, BorderLayout.NORTH);
 
         cImageViewPanel = CompFactory.panel();
-        cImageViewPanel.setLayout(new FlowLayout(FlowLayout.CENTER,40,40));
+        cImageViewPanel.setLayout(new FlowLayout(FlowLayout.LEFT,40,40));
         add(cImageViewPanel,BorderLayout.CENTER);
 
         cGoBackButton = CompFactory.button();
@@ -89,6 +89,7 @@ public class InspectingView extends JPanel implements IInspectingView, KeyListen
 
     @Override
     public void onInspectedAllPair() {
+        cLabelKeybindMessageLabel.setText("仕訳は全て完了した");
         cTargetLabelNameLabel.setText("仕分けは全て完了した");
     }
 
