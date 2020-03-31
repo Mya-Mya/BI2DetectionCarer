@@ -1,6 +1,7 @@
 package iview;
 
 import model.ImageInfo;
+import model.Inspection;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public interface IInspectingView {
      * この画面ではどの検出情報ラベルを持った要検証組の画像が表示されるのか表示する。
      * @param label この画面で取扱う検出情報ラベル
      */
-    void setDetectionLabelName(String label);
+    void setTargetLabelName(String label);
 
     /**
      * 新たに画像を表示させる。
@@ -26,5 +27,9 @@ public interface IInspectingView {
      */
     void onInspectedAllPair();
 
-    void gotoDetectionLabelChoosingView();
+    void gotoDetectionLabelChoosingView(Inspection inspection);
+
+    void setLabelKeybindMessage(String labelKeybindMessage);
+
+    void removeImage(ImageInfo imageInfo);
 }
