@@ -1,9 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * BeautyInlet2が出力した未検証・未訂正の画像と検出情報のうち、2つとも揃い検証可能な組を生成し、検証する。
