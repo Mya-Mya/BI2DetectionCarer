@@ -1,5 +1,10 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -41,12 +46,26 @@ public class Inspection {
     }
 
     /**
-     * 要検証組を検証した時に呼び出すこと。
+     * 要検証組を検証したことを確認し、画像をそのラベル名のフォルダに移動する。
      *
      * @param pair 検証した要検証組
+     * @param label 検証後のラベル
      */
-    public void onInspected(InspectablePair pair) {
+    public void onInspected(InspectablePair pair,String label) {
         inspectableList.remove(pair);
+        File imageFile=pair.imageInfo.file;
+        Path from=imageFile.toPath();
+        Path to= Paths.get(
+                imageFile.getParentFile().getAbsolutePath(),
+                label,
+                imageFile.getName()
+        );
+        try {
+            Files.move(from,to);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 
     /**
