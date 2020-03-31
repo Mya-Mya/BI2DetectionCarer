@@ -2,7 +2,6 @@ package presenter;
 
 import iview.IDetectionLabelChoosingView;
 import model.Inspection;
-import model.LabelInfo;
 
 import java.util.List;
 

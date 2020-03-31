@@ -2,7 +2,9 @@ package model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * BeautyInlet2が出力した検出情報を読み込む。
@@ -10,17 +12,19 @@ import java.util.List;
 
 public class DetectionDatabase {
     private List<DetectionInfo> detectionInfoList;
+    private Set<String> detectionLabelSet;
 
     /**
      * @param detectionDir 検出情報が含まれるcsvファイルが入っているディレクトリ
      */
-    public DetectionDatabase(File detectionDir, LabelInfo labelInfo) {
+    public DetectionDatabase(File detectionDir) {
         detectionInfoList = new ArrayList<>();
+        detectionLabelSet = new HashSet<>();
         File[] fileList = detectionDir.listFiles();
         if (fileList == null) return;
         for (File f : fileList) {
             if (!f.getName().matches("[0-9]{4}_[0-9]{2}.csv")) continue;
-            readDetectionFile(f, labelInfo);
+            readDetectionFile(f);
         }
     }
 
@@ -29,7 +33,7 @@ public class DetectionDatabase {
      *
      * @param detectionFile csvファイル
      */
-    private void readDetectionFile(File detectionFile, LabelInfo labelInfo) {
+    private void readDetectionFile(File detectionFile) {
         BufferedReader reader;
         try {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(detectionFile)));
@@ -46,15 +50,9 @@ public class DetectionDatabase {
                     head = false;
                     continue;
                 }
-
                 String[] splitted = line.split(",");
-
                 String label = splitted[6];
-                if (!labelInfo.labelList.contains(label)) {
-                    System.out.println(label + "というラベル名は存在しない。");
-                    continue;
-                }
-
+                detectionLabelSet.add(label);
                 DetectionInfo info = new DetectionInfo(
                         Integer.parseInt(splitted[0]),
                         Integer.parseInt(splitted[1]),
@@ -74,5 +72,13 @@ public class DetectionDatabase {
 
     public List<DetectionInfo> getDetectionInfoList() {
         return detectionInfoList;
+    }
+
+    /**
+     * 検出情報のラベルの集合を返す。
+     * @return 検出情報のラベルの集合
+     */
+    public Set<String> getDetectionLabelSet() {
+        return detectionLabelSet;
     }
 }

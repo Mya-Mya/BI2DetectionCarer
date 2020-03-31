@@ -9,7 +9,6 @@ import java.util.List;
  * ここでは未検証・未訂正の画像が含まれているディレクトリと検出情報が含まれているディレクトリを指定する。
  */
 public interface IInitialSettingView {
-    void setLabelListText(List<String>labelList);
     void setImageDirText(String directoryName,String fullPath);
     void setDetectionDirText(String directoryName,String fullPath);
     void gotoDetectionLabelChoosingView(Inspection inspection,List<String>labelList);

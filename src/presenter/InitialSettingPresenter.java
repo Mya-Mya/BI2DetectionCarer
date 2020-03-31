@@ -17,8 +17,6 @@ public class InitialSettingPresenter {
 
     public InitialSettingPresenter(IInitialSettingView view) {
         this.view = view;
-        labelList = Arrays.asList("Idunno", "Notseen", "Seen");
-        view.setLabelListText(labelList);
         view.setImageDirText("未設定", "未設定");
         view.setDetectionDirText("未設定", "未設定");
     }

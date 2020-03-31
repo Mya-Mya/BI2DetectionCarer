@@ -11,12 +11,8 @@ public class InspectionFactory {
      * @return inspection
      */
     public static Inspection createInspection(File detectionDir, File imageDir, List<String> labelList) {
-        LabelInfo labelInfo = new LabelInfo();
-        for (String label : labelList) {
-            labelInfo.addLabel(label);
-        }
         ImageDatabase imageDatabase = new ImageDatabase(imageDir);
-        DetectionDatabase detectionDatabase = new DetectionDatabase(detectionDir, labelInfo);
+        DetectionDatabase detectionDatabase = new DetectionDatabase(detectionDir);
         Inspection inspection = new Inspection(detectionDatabase.getDetectionInfoList(), imageDatabase.getImageInfoList());
         return inspection;
     }

@@ -16,7 +16,6 @@ import java.util.List;
 
 public class InitialSettingView extends JPanel implements IInitialSettingView, ActionListener {
     private InitialSettingPresenter presenter;
-    private JLabel cLabelListLabel;
     private JButton cImageDirChoosingButton;
     private JButton cDetectionChoosingButton;
     private JButton cOKButton;
@@ -34,19 +33,11 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
 
         JPanel center = CompFactory.panel();
         center.setBorder(BorderFactory.createEmptyBorder(0, 70, 0, 70));
-        center.setLayout(new GridLayout(3, 2, 40, 70));
+        center.setLayout(new GridLayout(2, 2, 40, 70));
+
 
         //1
         JLabel label = CompFactory.label();
-        label.setHorizontalAlignment(SwingConstants.RIGHT);
-        label.setText("扱うラベル");
-        center.add(label);
-
-        cLabelListLabel = CompFactory.label();
-        center.add(cLabelListLabel);
-
-        //2
-        label = CompFactory.label();
         label.setText("未検証・未訂正の画像が含まれるディレクトリ");
         label.setHorizontalAlignment(SwingConstants.RIGHT);
         center.add(label);
@@ -57,7 +48,7 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
         cImageDirChoosingButton.setHorizontalAlignment(SwingConstants.LEFT);
         center.add(cImageDirChoosingButton);
 
-        //3
+        //2
         label = CompFactory.label();
         label.setText("検出情報が含まれるディレクトリ");
         label.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -94,15 +85,6 @@ public class InitialSettingView extends JPanel implements IInitialSettingView, A
         cDetectionChoosingButton.setToolTipText(fullPath);
     }
 
-    @Override
-    public void setLabelListText(List<String> labelList) {
-        StringBuilder sb = new StringBuilder();
-        for (String s : labelList) {
-            sb.append(s);
-            sb.append(" ");
-        }
-        cLabelListLabel.setText(sb.toString());
-    }
 
     @Override
     public void gotoDetectionLabelChoosingView(Inspection inspection, List<String> labelList) {
