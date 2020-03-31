@@ -17,13 +17,11 @@ import java.util.List;
 public class DetectionLabelChoosingView extends JPanel implements IDetectionLabelChoosingView, ActionListener {
     private DetectionLabelChoosingPresenter presenter;
     private Inspection inspection;
-    private List<String> labelList;
     private JPanel buttonPanel;
 
     public DetectionLabelChoosingView(Inspection inspection) {
         super();
         this.inspection = inspection;
-        this.labelList = labelList;
         setLayout(new BorderLayout());
         setBackground(ColorFactory.back);
 
@@ -38,7 +36,7 @@ public class DetectionLabelChoosingView extends JPanel implements IDetectionLabe
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(60, 60, 60, 60));
         add(buttonPanel, BorderLayout.CENTER);
 
-        presenter = new DetectionLabelChoosingPresenter(this, inspection, labelList);
+        presenter = new DetectionLabelChoosingPresenter(this, inspection);
     }
 
     @Override
