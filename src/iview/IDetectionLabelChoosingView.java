@@ -1,5 +1,7 @@
 package iview;
 
+import model.Inspection;
+
 import java.util.List;
 
 /**
@@ -8,5 +10,5 @@ import java.util.List;
  */
 public interface IDetectionLabelChoosingView {
     void setLabelTextList(List<String> labelList);
-    void gotoInspectingView();
+    void gotoInspectingView(Inspection inspection, String targetLabel);
 }
