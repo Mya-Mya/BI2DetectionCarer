@@ -15,6 +15,8 @@ public class Inspection {
     private List<DetectionInfo> detectionInfoList;
     private Set<String> detectionLabelSet;
     private List<InspectablePair> inspectableList;
+    private int correctCount = 0;
+    private int incorrectCount = 0;
 
     /**
      * @param detectionInfoList 今ある検出情報
@@ -48,20 +50,25 @@ public class Inspection {
     /**
      * 要検証組を検証したことを確認し、画像をそのラベル名のフォルダに移動する。
      *
-     * @param pair 検証した要検証組
+     * @param pair  検証した要検証組
      * @param label 検証後のラベル
      */
-    public void onInspected(InspectablePair pair,String label) {
+    public void onInspected(InspectablePair pair, String label) {
+        if (pair.detectionInfo.label.equals(label)) {
+            correctCount++;
+        } else {
+            incorrectCount++;
+        }
         inspectableList.remove(pair);
-        File imageFile=pair.imageInfo.file;
-        Path from=imageFile.toPath();
-        Path to= Paths.get(
+        File imageFile = pair.imageInfo.file;
+        Path from = imageFile.toPath();
+        Path to = Paths.get(
                 imageFile.getParentFile().getAbsolutePath(),
                 label,
                 imageFile.getName()
         );
         try {
-            Files.move(from,to);
+            Files.move(from, to);
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -86,10 +93,32 @@ public class Inspection {
 
     /**
      * 検出情報のラベルの集合を返す。
+     *
      * @return 検出情報のラベルの集合
      */
     public Set<String> getDetectionLabelSet() {
         return detectionLabelSet;
     }
 
+    /**
+     * 検証された要検証組のうちBeautyInlet2が出力した検出情報が正しかった事例数を返す。
+     */
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    /**
+     * 検証された要検証組のうちBeautyInlet2が出力した検出情報が誤っていた事例数を返す。
+     */
+    public int getIncorrectCount() {
+        return incorrectCount;
+    }
+
+    /**
+     * 検証された要検証組のうちBeautyInlet2が出力した検出情報が正しかった割合を返す。
+     */
+    public double getCorrectRatio() {
+        double ratio = ((double) correctCount) / ((double) (correctCount + incorrectCount));
+        return ratio;
+    }
 }
