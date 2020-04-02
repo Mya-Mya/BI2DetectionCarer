@@ -118,7 +118,11 @@ public class Inspection {
      * 検証された要検証組のうちBeautyInlet2が出力した検出情報が正しかった割合を返す。
      */
     public double getCorrectRatio() {
-        double ratio = ((double) correctCount) / ((double) (correctCount + incorrectCount));
+        int allInspection=correctCount+incorrectCount;
+        if (allInspection==0) {
+            return 0;
+        }
+        double ratio = ((double) correctCount) / ((double) allInspection);
         return ratio;
     }
 }
