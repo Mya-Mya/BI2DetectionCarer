@@ -49,7 +49,7 @@ public class InspectingPresenter {
         System.out.println("InspectingPresenter.onKeyTyped");
         if (SMALL_ALPHABET_LIST.contains(keyChar)) {//検出情報のラベルと紐付いているキーが押された場合
             selectingAlphabet = keyChar;
-            view.setLabelKeybindMessage(labelKeybindMessage + " | > " + keyChar);
+            view.setLabelKeybindMessage(labelKeybindMessage + " | > " + labelKeybind.get(keyChar));
         } else if (String.valueOf(keyChar).matches("[0-9]{1}")) {//数字キーが押された場合
             int num = Integer.parseInt(String.valueOf(keyChar));
             String label = labelKeybind.get(selectingAlphabet);
